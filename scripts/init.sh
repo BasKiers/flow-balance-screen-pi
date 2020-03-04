@@ -40,7 +40,10 @@ sudo systemctl enable getty@.service
 
 # Add default setting overrides
 sudo sed -i 's/#disable_overscan=1/disable_overscan=1/' /boot/config.txt
-#sudo sed -i 's/console=tty1/console=tty3/' /boot/cmdline.txt
-#sudo sed -i 's/quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0//' /boot/cmdline.txt
-#echo -n "quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0" >> /boot/cmdline.txt
-#sudo sed -i ':a;N;$!ba;s/\n//g' /boot/cmdline.txt
+sudo sed -i 's/console=tty1/console=tty3/' /boot/cmdline.txt
+sudo sed -i 's/ quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0//' /boot/cmdline.txt
+echo -n " quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0" >> /boot/cmdline.txt
+sudo sed -i ':a;N;$!ba;s/\n//g' /boot/cmdline.txt
+
+# Remove option to login on pi account
+#passwd -l pi
