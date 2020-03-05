@@ -2,6 +2,28 @@
 
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
 
+# Add git pull script to systemd startup
+UPDATE_PATH=/etc/systemd/systemd/update_scripts.service
+rm -f $UPDATE_PATH
+touch $UPDATE_PATH
+sudo chmod u+x $UPDATE_PATH
+
+echo "[Unit]" >> $UPDATE_PATH
+echo "Description=Update guest user scripts" >> $UPDATE_PATH
+echo "After=network-online.target" >> $UPDATE_PATH
+echo "Wants=network-online.target" >> $UPDATE_PATH
+echo "Before=setup_guest.service" >> $UPDATE_PATH
+echo "" >> $UPDATE_PATH
+
+echo "[Service]" >> $UPDATE_PATH
+echo "Type=oneshot" >> $UPDATE_PATH
+echo "User=pi" >> $UPDATE_PATH
+echo "ExecStart=$SCRIPT_DIR/update.sh" >> $UPDATE_PATH
+echo "" >> $UPDATE_PATH
+
+echo "[Install]" >> $UPDATE_PATH
+echo "WantedBy=multi-user.target" >> $UPDATE_PATH
+
 # Add setup script to systemd startup
 SETUP_PATH=/etc/systemd/system/setup_guest.service
 rm -f $SETUP_PATH
@@ -35,6 +57,7 @@ echo "ExecStart=/sbin/agetty --autologin guest --noclear %I $TERM" >> $AUTOLOGIN
 
 sudo systemctl daemon-reload
 sudo systemctl enable setup_guest
+sudo systemctl enable update_scripts
 sudo systemctl enable getty@.service
 
 # Add default setting overrides
