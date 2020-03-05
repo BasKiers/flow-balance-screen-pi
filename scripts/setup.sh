@@ -32,4 +32,4 @@ sleep 5
 sudo sh -c `cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" " > /home/guest/.screen_id`
 sudo chown guest:guest /home/guest/.xinitrc
 sudo chown guest:guest /home/guest/.bash_profile
-sudo chmod -R ugo-w /home/*
+sudo chmod -R ugo-w /home/guest/*
