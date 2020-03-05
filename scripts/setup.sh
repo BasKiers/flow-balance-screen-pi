@@ -13,6 +13,7 @@ echo "SETUP"
 sudo adduser guest --gecos "guest guest, 10, 12, 12" --disabled-password
 #sudo useradd -m -d /home/guest/ -s /bin/bash -G guest
 echo "guest:foobar" | sudo chpasswd
+echo "pi:foobar" | sudo chpasswd
 sudo mkdir /home/guest
 sudo chown guest:guest /home/guest
 sudo chmod g+w /home/guest
