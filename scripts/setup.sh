@@ -21,7 +21,7 @@ sudo usermod -aG guest pi
 
 sudo touch /home/guest/.screen_id
 sudo cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" " > /home/guest/.screen_id
-sudo chown guest:guest /home/guest/.sreen_id
+sudo chown guest:guest /home/guest/.screen_id
 sudo cp $SCRIPT_DIR/.xinitrc /home/guest/.xinitrc
 sudo cp $SCRIPT_DIR/.bash_profile /home/guest/.bash_profile
 chown guest:guest /home/guest/.xinitrc
