@@ -24,12 +24,12 @@ sudo touch /home/guest/.screen_id
 sudo chown guest:guest /home/guest/.screen_id
 sudo cp $SCRIPT_DIR/.xinitrc /home/guest/.xinitrc
 sudo cp $SCRIPT_DIR/.bash_profile /home/guest/.bash_profile
-sudo chown guest:guest /home/guest/.xinitrc
-sudo chown guest:guest /home/guest/.bash_profile
-sudo chmod -R ugo-w /home/*
 
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends chromium-browser xserver-xorg x11-xserver-utils xinit openbox
 
 sleep 5
 sudo sh -c `cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" " > /home/guest/.screen_id`
+sudo chown guest:guest /home/guest/.xinitrc
+sudo chown guest:guest /home/guest/.bash_profile
+sudo chmod -R ugo-w /home/*
