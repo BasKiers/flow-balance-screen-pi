@@ -35,7 +35,6 @@ echo "ExecStart=/sbin/agetty --autologin guest --noclear %I $TERM" >> $AUTOLOGIN
 
 sudo systemctl daemon-reload
 sudo systemctl enable setup_guest
-sudo systemctl start setup_guest
 sudo systemctl enable getty@.service
 
 # Add default setting overrides
@@ -44,6 +43,11 @@ sudo sed -i 's/console=tty1/console=tty3/' /boot/cmdline.txt
 sudo sed -i 's/ quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0//' /boot/cmdline.txt
 echo -n " quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0" >> /boot/cmdline.txt
 sudo sed -i ':a;N;$!ba;s/\n//g' /boot/cmdline.txt
+
+echo "Please enter passphrase"
+read passphrase
+sudo gpg --batch --passphrase $passphrase --yes --no-symkey-cache -o /etc/wpa_supplicant/wpa_supplicant.conf --decrypt $SCRIPT_DIR/wpa_supplicant.conf.gpg
+sudo chmod o-rwx /etc/wpa_supplicant/
 
 # Remove option to login on pi account
 #passwd -l pi
