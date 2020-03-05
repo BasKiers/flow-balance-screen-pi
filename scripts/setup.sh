@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
 
 echo "CLEANING"
-#$SCRIPT_DIR/clean.sh
+$SCRIPT_DIR/clean.sh
 
 echo "SET DEFAULT USER"
 
@@ -25,6 +25,7 @@ sudo cp $SCRIPT_DIR/.xinitrc /home/guest/.xinitrc
 sudo cp $SCRIPT_DIR/.bash_profile /home/guest/.bash_profile
 chown guest:guest /home/guest/.xinitrc
 chown guest:guest /home/guest/.bash_profile
+sudo chmod u-w /home/*
 
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends chromium-browser xserver-xorg x11-xserver-utils xinit openbox
