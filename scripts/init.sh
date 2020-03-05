@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
 
 # Add git pull script to systemd startup
-UPDATE_PATH=/etc/systemd/systemd/update_scripts.service
+UPDATE_PATH=/etc/systemd/system/update_script.service
 rm -f $UPDATE_PATH
 touch $UPDATE_PATH
 sudo chmod u+x $UPDATE_PATH
@@ -57,7 +57,7 @@ echo "ExecStart=/sbin/agetty --autologin guest --noclear %I $TERM" >> $AUTOLOGIN
 
 sudo systemctl daemon-reload
 sudo systemctl enable setup_guest
-sudo systemctl enable update_scripts
+sudo systemctl enable update_script
 sudo systemctl enable getty@.service
 
 # Add default setting overrides
