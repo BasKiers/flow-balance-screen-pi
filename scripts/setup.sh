@@ -32,4 +32,4 @@ sudo apt-get update
 sudo apt-get install -y --no-install-recommends chromium-browser xserver-xorg x11-xserver-utils xinit openbox
 
 sleep 5
-sudo cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" " > /home/guest/.screen_id
+sudo sh -c `cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" " > /home/guest/.screen_id`
