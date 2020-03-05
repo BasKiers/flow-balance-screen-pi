@@ -74,3 +74,6 @@ sudo chmod o-rwx /etc/wpa_supplicant/
 
 # Remove option to login on pi account
 #passwd -l pi
+
+# Add nightly restart cronjob
+crontab -l | grep -v /sbin/shutdown | { cat; echo "0 3 * * * /sbin/shutdown -r +5"; } | crontab -
