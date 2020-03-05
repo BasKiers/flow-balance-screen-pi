@@ -24,8 +24,8 @@ sudo touch /home/guest/.screen_id
 sudo chown guest:guest /home/guest/.screen_id
 sudo cp $SCRIPT_DIR/.xinitrc /home/guest/.xinitrc
 sudo cp $SCRIPT_DIR/.bash_profile /home/guest/.bash_profile
-chown guest:guest /home/guest/.xinitrc
-chown guest:guest /home/guest/.bash_profile
+sudo chown guest:guest /home/guest/.xinitrc
+sudo chown guest:guest /home/guest/.bash_profile
 sudo chmod -R ugo-w /home/*
 
 sudo apt-get update
