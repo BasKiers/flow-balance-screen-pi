@@ -1,5 +1,6 @@
 #!/bin/sh
 
+DEBUG_MODE=true
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
 
 echo "CLEANING"
@@ -32,8 +33,13 @@ sudo chown guest:guest /home/guest/.screen_id /home/guest/.xinitrc /home/guest/.
 sudo chmod -R o-rwx /home/pi /home/guest
 sudo chmod ugo-w /home/guest/.xinitrc /home/guest/.bash_profile /home/guest/.bashrc /home/guest/.bash_logout /home/guest/.screen_id /home/guest/.profile
 
-# Disable usb
-echo '1-1' | sudo tee /sys/bus/usb/drivers/usb/unbind
+if DEBUG_MODE
+then
+  echo "pi:foobar" | sudo chpasswd
+else
+  # Disable usb
+  echo '1-1' | sudo tee /sys/bus/usb/drivers/usb/unbind
+fi
 
 # Add cron tasks
 # Nightly restart
