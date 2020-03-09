@@ -33,7 +33,7 @@ sudo chown guest:guest /home/guest/.screen_id /home/guest/.xinitrc /home/guest/.
 sudo chmod -R o-rwx /home/pi /home/guest
 sudo chmod ugo-w /home/guest/.xinitrc /home/guest/.bash_profile /home/guest/.bashrc /home/guest/.bash_logout /home/guest/.screen_id /home/guest/.profile
 
-if DEBUG_MODE
+if DEBUG_MODE;
 then
   echo "pi:foobar" | sudo chpasswd
 else
