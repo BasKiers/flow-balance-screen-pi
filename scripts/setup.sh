@@ -1,7 +1,9 @@
 #!/bin/sh
 
-DEBUG_MODE=false
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
+if [ $( cd $SCRIPT_DIR >/dev/null 2>&1 ; git rev-parse --abbrev-ref HEAD ) != "master" ]; then
+  DEBUG_MODE=true
+fi
 
 echo "CLEANING"
 $SCRIPT_DIR/clean.sh
