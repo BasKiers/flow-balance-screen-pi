@@ -12,9 +12,6 @@ echo "SETUP"
 SCREEN_ID=$(cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" ")
 
 sudo adduser guest --gecos "guest guest, 10, 12, 12" --disabled-password
-#sudo useradd -m -d /home/guest/ -s /bin/bash -G guest
-echo "guest:foobar" | sudo chpasswd
-echo "pi:foobar" | sudo chpasswd
 sudo mkdir /home/guest
 sudo chown guest:guest /home/guest
 sudo usermod -aG guest pi
@@ -28,6 +25,7 @@ sudo apt-get update
 sudo apt-get install -y --no-install-recommends chromium-browser xserver-xorg x11-xserver-utils xinit openbox dnsmasq
 
 sudo cp $SCRIPT_DIR/dnsmasq.conf /etc/dnsmasq.conf
+sudo service dnsmasq restart
 
 sudo chown guest:guest /home/guest/.screen_id /home/guest/.xinitrc /home/guest/.bash_profile
 sudo chmod -R o-rwx /home/pi /home/guest
