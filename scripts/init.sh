@@ -72,6 +72,7 @@ read passphrase
 sudo gpg --batch --passphrase $passphrase --yes --no-symkey-cache -o /etc/wpa_supplicant/wpa_supplicant.conf --decrypt $SCRIPT_DIR/wpa_supplicant.conf.gpg
 sudo gpg --batch --passphrase $passphrase --yes --no-symkey-cache -o $SCRIPT_DIR/new_relic_key --decrypt $SCRIPT_DIR/new_relic_key.gpg
 sudo chmod o-rwx /etc/wpa_supplicant/
+sudo chown pi:pi $SCRIPT_DIR/new_relic_key
 
 # Remove option to login on pi account
 passwd -l pi
