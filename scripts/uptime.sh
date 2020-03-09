@@ -1,3 +1,5 @@
+#!/bin/sh
+
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
 
 NEW_RELIC_KEY=$(cat $SCRIPT_DIR/new_relic_key)
