@@ -70,10 +70,8 @@ sudo sed -i ':a;N;$!ba;s/\n//g' /boot/cmdline.txt
 echo "Please enter passphrase"
 read passphrase
 sudo gpg --batch --passphrase $passphrase --yes --no-symkey-cache -o /etc/wpa_supplicant/wpa_supplicant.conf --decrypt $SCRIPT_DIR/wpa_supplicant.conf.gpg
+sudo gpg --batch --passphrase $passphrase --yes --no-symkey-cache -o $SCRIPT_DIR/new_relic_key --decrypt $SCRIPT_DIR/new_relic_key.gpg
 sudo chmod o-rwx /etc/wpa_supplicant/
 
 # Remove option to login on pi account
 passwd -l pi
-
-# Add nightly restart cronjob
-crontab -l | grep -v /sbin/shutdown | { cat; echo "0 3 * * * /sbin/shutdown -r +5"; } | crontab -

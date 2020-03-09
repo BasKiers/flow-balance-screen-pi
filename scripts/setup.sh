@@ -31,5 +31,11 @@ sudo chown guest:guest /home/guest/.screen_id /home/guest/.xinitrc /home/guest/.
 sudo chmod -R o-rwx /home/pi /home/guest
 sudo chmod ugo-w /home/guest/.xinitrc /home/guest/.bash_profile /home/guest/.bashrc /home/guest/.bash_logout /home/guest/.screen_id /home/guest/.profile
 
-#disable usb
+# Disable usb
 echo '1-1' | sudo tee /sys/bus/usb/drivers/usb/unbind
+
+# Add cron tasks
+# Nightly restart
+crontab -l | grep -v /sbin/shutdown | { cat; echo "0 3 * * * /sbin/shutdown -r +5"; } | crontab -
+# Ping NewRelic for uptime event
+crontab -l | grep -v uptime.sh | { cat; echo "* * * * * $SCRIPT_DIR/uptime.sh"; } | crontab -
