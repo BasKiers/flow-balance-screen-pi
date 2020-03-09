@@ -25,7 +25,9 @@ echo "export SCREEN_ID=$SCREEN_ID" | sudo tee -a /home/guest/.bash_profile
 echo "$SCREEN_ID" | sudo tee /home/guest/.screen_id
 
 sudo apt-get update
-sudo apt-get install -y --no-install-recommends chromium-browser xserver-xorg x11-xserver-utils xinit openbox
+sudo apt-get install -y --no-install-recommends chromium-browser xserver-xorg x11-xserver-utils xinit openbox dnsmasq
+
+sudo cp $SCRIPT_DIR/dnsmasq.conf /etc/dnsmasq.conf
 
 sudo chown guest:guest /home/guest/.screen_id /home/guest/.xinitrc /home/guest/.bash_profile
 sudo chmod -R o-rwx /home/pi /home/guest
