@@ -6,7 +6,7 @@ xset -dpms
 xset s noblank
 
 # allow quiting the X server with CTRL-ALT-BACKSPACE
-#setxkbmap -option terminate:ctrl_alt_bksp
+setxkbmap -option terminate:ctrl_alt_bksp
 
 # hide mouse cursor when it's not moving
 unclutter -idle 0.1 &
