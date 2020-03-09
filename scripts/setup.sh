@@ -32,3 +32,6 @@ sudo cp $SCRIPT_DIR/dnsmasq.conf /etc/dnsmasq.conf
 sudo chown guest:guest /home/guest/.screen_id /home/guest/.xinitrc /home/guest/.bash_profile
 sudo chmod -R o-rwx /home/pi /home/guest
 sudo chmod ugo-w /home/guest/.xinitrc /home/guest/.bash_profile /home/guest/.bashrc /home/guest/.bash_logout /home/guest/.screen_id /home/guest/.profile
+
+#disable usb
+echo '1-1' | sudo tee /sys/bus/usb/drivers/usb/unbind
