@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEBUG_MODE=true
+DEBUG_MODE=false
 SCRIPT_DIR=$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )
 
 echo "CLEANING"
