@@ -5,6 +5,7 @@ GIT_BRANCH=$( cd "$SCRIPT_DIR" > /dev/null 2>&1 ; git rev-parse --abbrev-ref HEA
 if [ $GIT_BRANCH != "master" ]; then
   DEBUG_MODE=true
 fi
+DEBUG_MODE=true
 
 echo "CLEANING"
 $SCRIPT_DIR/clean.sh

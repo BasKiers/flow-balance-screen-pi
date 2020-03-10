@@ -15,6 +15,7 @@ if [ $DEBUG_MODE == "true" ]; then
 else
   PROJECT_NAME="wilbur-schiphol-signing"
 fi
+setxkbmap -option terminate:ctrl_alt_bksp
 
 
 # hide mouse cursor when it's not moving
