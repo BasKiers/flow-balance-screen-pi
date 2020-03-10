@@ -18,7 +18,8 @@ SCREEN_ID=$(cat /sys/class/net/eth0/address | /usr/bin/md5sum | cut -f1 -d" ")
 sudo adduser guest --gecos "guest guest, 10, 12, 12" --disabled-password
 sudo mkdir /home/guest
 sudo chown guest:guest /home/guest
-sudo usermod -aG guest pi
+sudo usermod -a -G guest pi
+sudo usermod -a -G video guest
 
 sudo cp $SCRIPT_DIR/.xinitrc /home/guest/.xinitrc
 sudo cp $SCRIPT_DIR/.bash_profile /home/guest/.bash_profile
@@ -50,3 +51,5 @@ sudo chmod ugo-w /home/guest/.xinitrc /home/guest/.bash_profile /home/guest/.bas
 crontab -l | grep -v /sbin/shutdown | { cat; echo "0 3 * * * /sbin/shutdown -r +5"; } | crontab -
 # Ping NewRelic for uptime event
 crontab -l | grep -v uptime.sh | { cat; echo "* * * * * $SCRIPT_DIR/uptime.sh"; } | crontab -
+# Ping network and try to re-esablish wifi connection
+crontab -l | grep -v check_wifi.sh | { cat; echo "* * * * * $SCRIPT_DIR/check_wifi.sh"; } | crontab -
