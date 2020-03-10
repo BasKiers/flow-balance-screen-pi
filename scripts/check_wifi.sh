@@ -28,7 +28,7 @@ then
     else
       if [ $i == $retries ]
       then
-          reboot
+          sudo reboot
       fi
     fi
     sleep 5
